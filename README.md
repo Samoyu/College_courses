@@ -28,7 +28,9 @@ Follow these steps to set up and run the project:
    ```
 
 3. **Install Required Dependencies**
-   `pip install -r requirements.txt`
+   ```
+   pip install -r requirements.txt
+   ```
 
 4. **Download ChromeDriver**
   Download ChromeDriver from [here](https://chromedriver.chromium.org/downloads).
@@ -40,9 +42,13 @@ Follow these steps to set up and run the project:
 To run the scraping scripts, use the following commands:
 
 **For NTHU:**
-   `python3 nthu_scrape.py <path_to_chromedriver> "https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php" <path_to_output_csv>`
+   ```
+   python3 nthu_scrape.py <path_to_chromedriver> "https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php" <path_to_output_csv>
+   ```
 
 **For NYCU:**
-   `python3 nycu_scrape.py <path_to_chromedriver> "https://timetable.nycu.edu.tw/" <path_to_output_csv>`
+   ```
+   python3 nycu_scrape.py <path_to_chromedriver> "https://timetable.nycu.edu.tw/" <path_to_output_csv>
+   ```
 
 Replace <path_to_chromedriver>, <path_to_output_csv> with the actual paths on your system.
