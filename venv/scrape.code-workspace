@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "scrape",
+			"path": ".."
+		},
+		{
+			"name": "nthu",
+			"path": "../../Startup/Scrape/nthu"
+		},
+		{
+			"name": "nycu",
+			"path": "../../Startup/Scrape/nycu"
+		}
+	],
+	"settings": {}
+}

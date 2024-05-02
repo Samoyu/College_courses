@@ -35,6 +35,7 @@ def nthu_course_scrape(webdriver_path, search_url, csv_path, twocaptcha_apikey):
             captcha_img = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/form/table[2]/tbody/tr/td/img')))
             captcha_img.screenshot('captchas/captcha.png')
             
+            # See more info at: https://pypi.org/project/2captcha-python/
             solver = TwoCaptcha(os.getenv('APIKEY_2CAPTCHA', twocaptcha_apikey))
             result = solver.normal('captchas/captcha.png')
             code = result['code']
@@ -43,6 +44,7 @@ def nthu_course_scrape(webdriver_path, search_url, csv_path, twocaptcha_apikey):
             driver.find_element(By.NAME, "Submit").click()
             time.sleep(2)
             
+            # If no table in the page then skip
             try:
                 table_body = driver.find_element(By.TAG_NAME, 'tbody')
                 table_rows = table_body.find_elements(By.TAG_NAME, 'tr')

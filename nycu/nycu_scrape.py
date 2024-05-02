@@ -7,7 +7,7 @@ import sys
 import time
 import csv
 
-def nycu_course_scrape(webdriver_path, url):
+def nycu_course_scrape(webdriver_path, url, csv_path):
     # Initiate webdriver
     service = webdriver.chrome.service.Service(webdriver_path)
     chrome_options = webdriver.ChromeOptions()
@@ -241,8 +241,7 @@ def nycu_course_scrape(webdriver_path, url):
                     # Find all tbody elements on the page
                     all_tbody = driver.find_elements(By.TAG_NAME, 'tbody')
                     
-                    with open("/Users/lincheyu/Desktop/Startup/Scrape/nycu_course.csv", 
-                            mode="a", newline="", encoding="utf-8") as file:
+                    with open(csv_path, mode="a", newline="", encoding="utf-8") as file:
                         writer = csv.writer(file)
                     
                         # Process each tbody separately
@@ -273,13 +272,15 @@ def nycu_course_scrape(webdriver_path, url):
     finally:
         driver.quit()
 
-# webdriver_path = "/Users/lincheyu/Desktop/Startup/Scrape/chromedriver"
+# webdriver_path = "/Users/lincheyu/Desktop/Scrape/chromedriver"
 # url = "https://timetable.nycu.edu.tw/"
+# csv_path = "/Users/lincheyu/Desktop/Scrape/nycu_course.csv"
         
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         print("Usage: python script_name.py <webdriver_path> <url>")
     else:
         webdriver_path = sys.argv[1]
         url = sys.argv[2]
-        nycu_course_scrape(webdriver_path, url)
+        csv_path = sys.argv[3]
+        nycu_course_scrape(webdriver_path, url, csv_path)
