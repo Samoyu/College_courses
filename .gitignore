@@ -1,5 +1,6 @@
 # created by virtualenv automatically
 *.pyc
+.DS_Store
 venv
 Assets
 chromedriver
