@@ -9,10 +9,6 @@
 </p>
 <br>
 
-## Description
-
-The `nthu_scrape.py` and `nycu_scrape.py` scripts automate the retrieval of course data from respective university portals. The data scraped includes course names, times, professors, and other relevant information, which is saved into CSV files for easy analysis and accessibility.
-
 ## Prerequisites
 
 - Python 3.x
