@@ -10,12 +10,12 @@ import os
 import time
 import csv
 
-def nthu_course_scrape(webdriver_path, search_url, csv_path, twocaptcha_apikey):
+def nthu_course_scrape(webdriver_path, csv_path, twocaptcha_apikey):
     service = webdriver.chrome.service.Service(webdriver_path)
     chrome_options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=service, options=chrome_options)
     
-    driver.get(search_url)
+    driver.get("https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php" )
     time.sleep(2)
     
     try:
@@ -24,7 +24,7 @@ def nthu_course_scrape(webdriver_path, search_url, csv_path, twocaptcha_apikey):
         
         for i in range(1, len(options)):
             if i != 1:
-                driver.get(search_url)
+                driver.get("https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php" )
                 time.sleep(2)
             
             select_element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "dept")))
@@ -66,17 +66,15 @@ def nthu_course_scrape(webdriver_path, search_url, csv_path, twocaptcha_apikey):
 
 
 # webdriver_path = "/Users/lincheyu/Desktop/Scrape/chromedriver"
-# url = "https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php"
 # csv_path = "/Users/lincheyu/Desktop/Scrape/nthu/nthu_course.csv"
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: python script_name.py <webdriver_path> <url> <csv_path>")
+    if len(sys.argv) != 4:
+        print("Usage: python3 script_name.py <webdriver_path> <url> <csv_path>")
         sys.exit(1)
 
     webdriver_path = sys.argv[1]
-    url = sys.argv[2]
-    csv_path = sys.argv[3]
-    twocaptcha_apikey = sys.argv[4]
+    csv_path = sys.argv[2]
+    twocaptcha_apikey = sys.argv[3]
 
-    nthu_course_scrape(webdriver_path, url, csv_path, twocaptcha_apikey)
+    nthu_course_scrape(webdriver_path, csv_path, twocaptcha_apikey)

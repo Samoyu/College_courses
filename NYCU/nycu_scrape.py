@@ -7,14 +7,14 @@ import sys
 import time
 import csv
 
-def nycu_course_scrape(webdriver_path, url, csv_path):
+def nycu_course_scrape(webdriver_path, csv_path):
     # Initiate webdriver
     service = webdriver.chrome.service.Service(webdriver_path)
     chrome_options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
-        driver.get(url)
+        driver.get("https://timetable.nycu.edu.tw/")
         time.sleep(2) 
 
         # Check English course name checkbox
@@ -273,14 +273,12 @@ def nycu_course_scrape(webdriver_path, url, csv_path):
         driver.quit()
 
 # webdriver_path = "/Users/lincheyu/Desktop/Scrape/chromedriver"
-# url = "https://timetable.nycu.edu.tw/"
 # csv_path = "/Users/lincheyu/Desktop/Scrape/nycu_course.csv"
         
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: python script_name.py <webdriver_path> <url>")
+    if len(sys.argv) != 3:
+        print("Usage: python3 script_name.py <webdriver_path> <url>")
     else:
         webdriver_path = sys.argv[1]
-        url = sys.argv[2]
-        csv_path = sys.argv[3]
-        nycu_course_scrape(webdriver_path, url, csv_path)
+        csv_path = sys.argv[2]
+        nycu_course_scrape(webdriver_path, csv_path)

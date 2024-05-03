@@ -45,7 +45,7 @@ def ntu_course_scrape(csv_path):
 # csv_path = "output.csv"
 if __name__ == "__main__":
    if len(sys.argv) != 2:
-      print("Usage: python script_name.py <csv_path>")
+      print("Usage: python3 script_name.py <csv_path>")
       sys.exit(1)
 
    csv_path = sys.argv[1]
