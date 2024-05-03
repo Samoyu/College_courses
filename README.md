@@ -1,7 +1,3 @@
-# NTHU and NYCU Course Scraping
-
-This repository contains scripts for scraping course information from National Tsing Hua University (NTHU) and National Yang Ming Chiao Tung University (NYCU) course web pages using Python and Selenium.
-
 ## Description
 
 The `nthu_scrape.py` and `nycu_scrape.py` scripts automate the retrieval of course data from respective university portals. The data scraped includes course names, times, professors, and other relevant information, which is saved into CSV files for easy analysis and accessibility.
@@ -42,8 +38,10 @@ Follow these steps to set up and run the project:
 To run the scraping scripts, use the following commands:
 
 **For NTHU:**
+   First create an account and obtain your own twocaptcha apikey [here](https://2captcha.com/)
+   
    ```
-   python3 nthu_scrape.py <path_to_chromedriver> "https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php" <path_to_output_csv>
+   python3 nthu_scrape.py <path_to_chromedriver> "https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php" <path_to_output_csv> <your_twocaptcha_apikey>
    ```
 
 **For NYCU:**
