@@ -1,3 +1,13 @@
+<p align="center">
+  <img src="college.png" alt="College Logo"> 
+</p>
+
+<h1 align="center">College Courses - Taiwan</h1>
+
+<p align="center">
+  Simply scrape courses information from three different colleges with a single command.
+</p>
+
 ## Description
 
 The `nthu_scrape.py` and `nycu_scrape.py` scripts automate the retrieval of course data from respective university portals. The data scraped includes course names, times, professors, and other relevant information, which is saved into CSV files for easy analysis and accessibility.
@@ -37,9 +47,9 @@ Follow these steps to set up and run the project:
 
 To run the scraping scripts, use the following commands:
 
-**For NTHU:**
-   First create an account and obtain your own twocaptcha apikey [here](https://2captcha.com/)
-   
+**For NTHU:** <br>
+   First create an account to obtain your own twocaptcha apikey [here](https://2captcha.com/)
+
    ```
    python3 nthu_scrape.py <path_to_chromedriver> "https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php" <path_to_output_csv> <your_twocaptcha_apikey>
    ```
