@@ -68,7 +68,6 @@ def nthu_course_scrape(webdriver_path, search_url, csv_path, twocaptcha_apikey):
 # webdriver_path = "/Users/lincheyu/Desktop/Scrape/chromedriver"
 # url = "https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php"
 # csv_path = "/Users/lincheyu/Desktop/Scrape/nthu/nthu_course.csv"
-# twocaptcha_apikey = '620ad6adcb8ff4ccff3aefac1346216a'
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
