@@ -49,7 +49,7 @@ Follow these steps to set up and run the project:
 To run the scraping scripts, use the following commands:
 
 ### For NTU:
-Scrape data for NTU using the following command:
+Execute the following command to scrape data for NTU:
    ```
    python3 ntu_scrape.py <path_to_output_csv>
    ```
@@ -67,5 +67,3 @@ Execute the following command to scrape data for NYCU:
    ```
    python3 nycu_scrape.py <path_to_chromedriver> <path_to_output_csv>
    ```
-
-Replace <path_to_chromedriver>, <path_to_output_csv> with the actual paths on your system.
