@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn-icons-png.flaticon.com/512/1344/1344761.png" alt="College Logo"> 
+  <img src="https://cdn-icons-png.flaticon.com/512/1344/1344761.png" alt="College Logo", width="40%"> 
 </p>
 
 <h2 align="center">College Courses - Taiwan</h2>
