@@ -7,7 +7,6 @@
 <p align="center">
   Simply scrape courses information from three different colleges with a single command.
 </p>
-<hr>
 <br>
 
 ## Description

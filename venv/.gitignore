@@ -1,3 +1,4 @@
 # created by virtualenv automatically
 *.pyc
-/Users/lincheyu/Desktop/Scrape/venv
+venv/
+Assets/
