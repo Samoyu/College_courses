@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://www.flaticon.com/free-icon/graduation-hat_1344761?term=college&page=1&position=8&origin=search&related_id=1344761" alt="College Logo"> 
+  <img src="https://cdn-icons-png.flaticon.com/512/1344/1344761.png" alt="College Logo"> 
 </p>
 
 <h2 align="center">College Courses - Taiwan</h2>
