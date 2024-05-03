@@ -47,20 +47,23 @@ Follow these steps to set up and run the project:
 ## Usage
 
 To run the scraping scripts, use the following commands:
-<br>
-**For NTU:**
+
+### For NTU:
+Scrape data for NTU using the following command:
    ```
    python3 ntu_scrape.py <path_to_output_csv>
    ```
-<br>
-**For NTHU:** <br>
-   - First create an account to obtain your own twocaptcha apikey [here](https://2captcha.com/)
+
+### For NTHU:
+1. **Obtain a 2Captcha API key:** First, create an account at [2Captcha](https://2captcha.com/) to get your API key.
+2. **Scrape data:** Run the command below:
 
    ```
    python3 nthu_scrape.py <path_to_chromedriver> <path_to_output_csv> <your_twocaptcha_apikey>
    ```
-<br>
-**For NYCU:**
+
+### For NYCU:
+Execute the following command to scrape data for NYCU:
    ```
    python3 nycu_scrape.py <path_to_chromedriver> <path_to_output_csv>
    ```
