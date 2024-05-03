@@ -1,12 +1,14 @@
 <p align="center">
-  <img src="college.png" alt="College Logo"> 
+  <img src="https://www.flaticon.com/free-icon/graduation-hat_1344761?term=college&page=1&position=8&origin=search&related_id=1344761" alt="College Logo"> 
 </p>
 
-<h1 align="center">College Courses - Taiwan</h1>
+<h2 align="center">College Courses - Taiwan</h2>
 
 <p align="center">
   Simply scrape courses information from three different colleges with a single command.
 </p>
+<hr>
+<br>
 
 ## Description
 
@@ -48,7 +50,7 @@ Follow these steps to set up and run the project:
 To run the scraping scripts, use the following commands:
 
 **For NTHU:** <br>
-   First create an account to obtain your own twocaptcha apikey [here](https://2captcha.com/)
+   - First create an account to obtain your own twocaptcha apikey [here](https://2captcha.com/)
 
    ```
    python3 nthu_scrape.py <path_to_chromedriver> "https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php" <path_to_output_csv> <your_twocaptcha_apikey>
