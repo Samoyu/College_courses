@@ -47,6 +47,7 @@ To run the scraping scripts, use the following commands:
 ### For NTU:
 Execute the following command to scrape data for NTU:
    ```
+   cd NTU
    python3 ntu_scrape.py <path_to_output_csv>
    ```
 
@@ -55,11 +56,14 @@ Execute the following command to scrape data for NTU:
 2. **Scrape data:** Run the command below:
 
    ```
+   cd NTHU
+   mkdir captchas
    python3 nthu_scrape.py <path_to_chromedriver> <path_to_output_csv> <your_twocaptcha_apikey>
    ```
 
 ### For NYCU:
 Execute the following command to scrape data for NYCU:
    ```
+   cd NYCU
    python3 nycu_scrape.py <path_to_chromedriver> <path_to_output_csv>
    ```
