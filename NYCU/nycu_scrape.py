@@ -41,6 +41,7 @@ def nycu_course_scrape(webdriver_path, csv_path):
                         for n in range(len(Select(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "fDep")))).options)):
                             select_department = Select(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "fDep"))))
                             select_department.select_by_index(n)
+                            current_dep_text = select_department.first_selected_option.text
                             time.sleep(1)
 
                             WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "crstime_search"))).click()
@@ -64,32 +65,36 @@ def nycu_course_scrape(webdriver_path, csv_path):
                                 # Find all tbody elements on the page
                                 all_tbody = driver.find_elements(By.TAG_NAME, 'tbody')
                                 
-                                with open("/Users/lincheyu/Desktop/Startup/Scrape/nycu_course.csv", 
-                                        mode="a", newline="", encoding="utf-8") as file:
-                                    writer = csv.writer(file)
-                                
-                                    # Process each tbody separately
-                                    for table_body in all_tbody:
-                                        # If the current tbody is the excluded one, skip it
-                                        if table_body == excluded_tbody: continue
-                                        
-                                        rows = table_body.find_elements(By.TAG_NAME, 'tr')
-
-                                        all_data = []  # This will store each row's data
-                                        for row in rows:
-                                            row_data = []
-                                            columns = row.find_elements(By.TAG_NAME, "td")
+                                if not all_tbody:
+                                    print("No tables found on the page.")
+                                else:
+                                    with open(csv_path, mode="a", newline="", encoding="utf-8") as file:
+                                        writer = csv.writer(file)
+                                    
+                                        # Process each tbody separately
+                                        for table_body in all_tbody:
+                                            # If the current tbody is the excluded one, skip it
+                                            if table_body == excluded_tbody:
+                                                continue
                                             
-                                            for column in columns:
-                                                # Skip columns with colspan
-                                                if column.get_attribute('colspan'): continue
-                                                row_data.append(column.text)
+                                            rows = table_body.find_elements(By.TAG_NAME, 'tr')
+                                            all_data = []  # This will store each row's data
+                                            for row in rows:
+                                                row_data = []
+                                                columns = row.find_elements(By.TAG_NAME, "td")
+                                                
+                                                for column in columns:
+                                                    if column.get_attribute('colspan'):  # Skip columns with colspan attribute
+                                                        continue
+                                                    row_data.append(column.text)
+                                                
+                                                if row_data:  # Ensure row_data is not empty before appending department text and adding to all_data
+                                                    row_data.append(current_dep_text)
+                                                    all_data.append(row_data)
                                             
-                                            all_data.append(row_data)
-                                        
-                                        # Write each tbody's data to CSV file
-                                        for data in all_data:
-                                            writer.writerow(data)
+                                            # Write each tbody's data to CSV file if there is data to write
+                                            for data in all_data:
+                                                writer.writerow(data)
                             except Exception as e:
                                 print(f"An error occurred: {e}")
             
@@ -107,6 +112,7 @@ def nycu_course_scrape(webdriver_path, csv_path):
                     for n in range(len(Select(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "fDep")))).options)):
                         select_department = Select(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "fDep"))))
                         select_department.select_by_index(n)
+                        current_dep_text = select_department.first_selected_option.text
                         time.sleep(1)
 
                         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "crstime_search"))).click()
@@ -129,32 +135,36 @@ def nycu_course_scrape(webdriver_path, csv_path):
                             # Find all tbody elements on the page
                             all_tbody = driver.find_elements(By.TAG_NAME, 'tbody')
                             
-                            with open("/Users/lincheyu/Desktop/Startup/Scrape/nycu_course.csv", 
-                                    mode="a", newline="", encoding="utf-8") as file:
-                                writer = csv.writer(file)
-                            
-                                # Process each tbody separately
-                                for table_body in all_tbody:
-                                    # If the current tbody is the excluded one, skip it
-                                    if table_body == excluded_tbody: continue
-                                    
-                                    rows = table_body.find_elements(By.TAG_NAME, 'tr')
-
-                                    all_data = []  # This will store each row's data
-                                    for row in rows:
-                                        row_data = []
-                                        columns = row.find_elements(By.TAG_NAME, "td")
+                            if not all_tbody:
+                                print("No tables found on the page.")
+                            else:
+                                with open(csv_path, mode="a", newline="", encoding="utf-8") as file:
+                                    writer = csv.writer(file)
+                                
+                                    # Process each tbody separately
+                                    for table_body in all_tbody:
+                                        # If the current tbody is the excluded one, skip it
+                                        if table_body == excluded_tbody:
+                                            continue
                                         
-                                        for column in columns:
-                                            # Skip columns with colspan
-                                            if column.get_attribute('colspan'): continue
-                                            row_data.append(column.text)
+                                        rows = table_body.find_elements(By.TAG_NAME, 'tr')
+                                        all_data = []  # This will store each row's data
+                                        for row in rows:
+                                            row_data = []
+                                            columns = row.find_elements(By.TAG_NAME, "td")
+                                            
+                                            for column in columns:
+                                                if column.get_attribute('colspan'):  # Skip columns with colspan attribute
+                                                    continue
+                                                row_data.append(column.text)
+                                            
+                                            if row_data:  # Ensure row_data is not empty before appending department text and adding to all_data
+                                                row_data.append(current_dep_text)
+                                                all_data.append(row_data)
                                         
-                                        all_data.append(row_data)
-                                    
-                                    # Write each tbody's data to CSV file
-                                    for data in all_data:
-                                        writer.writerow(data)
+                                        # Write each tbody's data to CSV file if there is data to write
+                                        for data in all_data:
+                                            writer.writerow(data)
                         except Exception as e:
                             print(f"An error occurred: {e}")
             
@@ -167,10 +177,11 @@ def nycu_course_scrape(webdriver_path, csv_path):
                 for n in range(len(Select(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "fDep")))).options)):
                     select_department = Select(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "fDep"))))
                     select_department.select_by_index(n)
+                    current_dep_text = select_department.first_selected_option.text
                     time.sleep(1)
 
                     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "crstime_search"))).click()
-                    time.sleep(3)  # Allow time for the page to load results
+                    time.sleep(8)  # Allow time for the page to load results
 
                     try:
                         # Refetch dropdown elements after page load
@@ -188,32 +199,36 @@ def nycu_course_scrape(webdriver_path, csv_path):
                         # Find all tbody elements on the page
                         all_tbody = driver.find_elements(By.TAG_NAME, 'tbody')
                         
-                        with open("/Users/lincheyu/Desktop/Startup/Scrape/nycu_course.csv", 
-                                mode="a", newline="", encoding="utf-8") as file:
-                            writer = csv.writer(file)
-                        
-                            # Process each tbody separately
-                            for table_body in all_tbody:
-                                # If the current tbody is the excluded one, skip it
-                                if table_body == excluded_tbody: continue
-                                
-                                rows = table_body.find_elements(By.TAG_NAME, 'tr')
-
-                                all_data = []  # This will store each row's data
-                                for row in rows:
-                                    row_data = []
-                                    columns = row.find_elements(By.TAG_NAME, "td")
+                        if not all_tbody:
+                            print("No tables found on the page.")
+                        else:
+                            with open(csv_path, mode="a", newline="", encoding="utf-8") as file:
+                                writer = csv.writer(file)
+                            
+                                # Process each tbody separately
+                                for table_body in all_tbody:
+                                    # If the current tbody is the excluded one, skip it
+                                    if table_body == excluded_tbody:
+                                        continue
                                     
-                                    for column in columns:
-                                        # Skip columns with colspan
-                                        if column.get_attribute('colspan'): continue
-                                        row_data.append(column.text)
+                                    rows = table_body.find_elements(By.TAG_NAME, 'tr')
+                                    all_data = []  # This will store each row's data
+                                    for row in rows:
+                                        row_data = []
+                                        columns = row.find_elements(By.TAG_NAME, "td")
+                                        
+                                        for column in columns:
+                                            if column.get_attribute('colspan'):  # Skip columns with colspan attribute
+                                                continue
+                                            row_data.append(column.text)
+                                        
+                                        if row_data:  # Ensure row_data is not empty before appending department text and adding to all_data
+                                            row_data.append(current_dep_text)
+                                            all_data.append(row_data)
                                     
-                                    all_data.append(row_data)
-                                
-                                # Write each tbody's data to CSV file
-                                for data in all_data:
-                                    writer.writerow(data)
+                                    # Write each tbody's data to CSV file if there is data to write
+                                    for data in all_data:
+                                        writer.writerow(data)
                     except Exception as e:
                         print(f"An error occurred: {e}")
             
@@ -221,6 +236,7 @@ def nycu_course_scrape(webdriver_path, csv_path):
             else:
                 select_grade = Select(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "fType"))))
                 select_grade.select_by_index(i)
+                current_grade_text = select_grade.first_selected_option.text
                 time.sleep(1)
 
                 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "crstime_search"))).click()
@@ -241,31 +257,36 @@ def nycu_course_scrape(webdriver_path, csv_path):
                     # Find all tbody elements on the page
                     all_tbody = driver.find_elements(By.TAG_NAME, 'tbody')
                     
-                    with open(csv_path, mode="a", newline="", encoding="utf-8") as file:
-                        writer = csv.writer(file)
-                    
-                        # Process each tbody separately
-                        for table_body in all_tbody:
-                            # If the current tbody is the excluded one, skip it
-                            if table_body == excluded_tbody: continue
-                            
-                            rows = table_body.find_elements(By.TAG_NAME, 'tr')
-
-                            all_data = []  # This will store each row's data
-                            for row in rows:
-                                row_data = []
-                                columns = row.find_elements(By.TAG_NAME, "td")
+                    if not all_tbody:
+                        print("No tables found on the page.")
+                    else:
+                        with open(csv_path, mode="a", newline="", encoding="utf-8") as file:
+                            writer = csv.writer(file)
+                        
+                            # Process each tbody separately
+                            for table_body in all_tbody:
+                                # If the current tbody is the excluded one, skip it
+                                if table_body == excluded_tbody:
+                                    continue
                                 
-                                for column in columns:
-                                    # Skip columns with colspan
-                                    if column.get_attribute('colspan'): continue
-                                    row_data.append(column.text)
+                                rows = table_body.find_elements(By.TAG_NAME, 'tr')
+                                all_data = []  # This will store each row's data
+                                for row in rows:
+                                    row_data = []
+                                    columns = row.find_elements(By.TAG_NAME, "td")
+                                    
+                                    for column in columns:
+                                        if column.get_attribute('colspan'):  # Skip columns with colspan attribute
+                                            continue
+                                        row_data.append(column.text)
+                                    
+                                    if row_data:  # Ensure row_data is not empty before appending department text and adding to all_data
+                                        row_data.append(current_grade_text)
+                                        all_data.append(row_data)
                                 
-                                all_data.append(row_data)
-                            
-                            # Write each tbody's data to CSV file
-                            for data in all_data:
-                                writer.writerow(data)
+                                # Write each tbody's data to CSV file if there is data to write
+                                for data in all_data:
+                                    writer.writerow(data)
                 except Exception as e:
                     print(f"An error occurred: {e}")
 
@@ -273,11 +294,11 @@ def nycu_course_scrape(webdriver_path, csv_path):
         driver.quit()
 
 # webdriver_path = "/Users/lincheyu/Desktop/Scrape/chromedriver"
-# csv_path = "/Users/lincheyu/Desktop/Scrape/nycu_course.csv"
+# csv_path = "/Users/lincheyu/Desktop/Scrape/NYCU/nycu_course.csv"
         
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python3 script_name.py <webdriver_path> <url>")
+        print("Usage: python3 script_name.py <webdriver_path> <csv_path>")
     else:
         webdriver_path = sys.argv[1]
         csv_path = sys.argv[2]
