@@ -181,7 +181,7 @@ def nycu_course_scrape(webdriver_path, csv_path):
                     time.sleep(1)
 
                     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "crstime_search"))).click()
-                    time.sleep(8)  # Allow time for the page to load results
+                    time.sleep(10)  # Allow time for the page to load results
 
                     try:
                         # Refetch dropdown elements after page load
