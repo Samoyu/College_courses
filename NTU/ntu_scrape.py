@@ -4,13 +4,13 @@ import re
 import sys
 import certifi
 import pandas as pd
+import ssl
+import logging
+import time
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from urllib.error import URLError
 from http.client import IncompleteRead
-import ssl
-import logging
-import time
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -118,11 +118,13 @@ def ntu_course_scrape(csv_path):
         write_data_to_csv(csv_path, header, rows, file_exists)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        logging.error("Usage: python3 script_name.py <csv_path>")
-        sys.exit(1)
+    # Get the directory of the current script
+    script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    csv_path = sys.argv[1]
+    # Define the path to the CSV file in the data folder within the script directory
+    data_folder = os.path.join(script_dir, 'Data')
+    os.makedirs(data_folder, exist_ok=True)
+    csv_path = os.path.join(data_folder, 'ntu_courses.csv')
 
     ntu_course_scrape(csv_path)
     ntu_course_cleaning(csv_path)
