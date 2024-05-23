@@ -50,21 +50,22 @@ To run the scraping scripts, use the following commands:
    cd NTU
    python3 ntu_scrape.py 
    ```
-2. You can see the csv data in the 'Data' folder
+2. You can see **'ntu_courses.csv'**  in the 'Data' folder
+
+### For NYCU:
+1. Execute the following command to scrape data for NYCU:
+   ```
+   cd NYCU
+   python3 nycu_scrape.py 
+   ```
+2. You can see **'nycu_courses.csv'**  in the 'Data' folder
 
 ### For NTHU:
 1. **Obtain a 2Captcha API key:** First, create an account at [2Captcha](https://2captcha.com/) to get your API key.
-2. **Scrape data:** Run the command below:
+2. **Scrape data:** Execute the following command to scrape data for NTHU:
 
    ```
    cd NTHU
    mkdir captchas
    python3 nthu_scrape.py <path_to_chromedriver> <path_to_output_csv> <your_twocaptcha_apikey>
-   ```
-
-### For NYCU:
-Execute the following command to scrape data for NYCU:
-   ```
-   cd NYCU
-   python3 nycu_scrape.py <path_to_chromedriver> <path_to_output_csv>
    ```
