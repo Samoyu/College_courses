@@ -45,12 +45,13 @@ Follow these steps to set up and run the project:
 To run the scraping scripts, use the following commands:
 
 ### For NTU:
-Execute the following command to scrape data for NTU:
+1. Execute the following command to scrape data for NTU:
    ```
    cd NTU
    python3 ntu_scrape.py 
    ```
-the scrape date will be in the 'Data' folder
+2. You can see the csv data in the 'Data' folder
+
 ### For NTHU:
 1. **Obtain a 2Captcha API key:** First, create an account at [2Captcha](https://2captcha.com/) to get your API key.
 2. **Scrape data:** Run the command below:
