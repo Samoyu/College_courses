@@ -26,7 +26,7 @@ def nycu_courses_cleaning(file_path):
     nycu_courses_chinese_dep = nycu_courses['chinese_dep']
 
     # Drop unnecessary columns
-    nycu_courses = nycu_courses.drop(['notes', 'limit', 'people', 'classHour', 'required', 'chinese_dep'], axis=1)
+    nycu_courses = nycu_courses.drop(['semester', 'notes', 'limit', 'people', 'classHour', 'required', 'chinese_dep'], axis=1)
 
     # Drop duplicate rows
     nycu_courses = nycu_courses.drop_duplicates()
@@ -78,6 +78,7 @@ def nycu_courses_cleaning(file_path):
         return [time_str[i:i+2] for i in range(0, len(time_str), 2) if time_str[i:i+2].strip()]
 
     nycu_courses['time'] = nycu_courses['time_string'].apply(split_time_correctly)
+    nycu_courses['school'] = 'NYCU'
 
     # Export CSV file
     nycu_courses.to_csv(file_path, index=False, encoding="utf-8")
@@ -126,7 +127,7 @@ def nycu_course_scrape(csv_path):
                             time.sleep(1)
 
                             WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "crstime_search"))).click()
-                            time.sleep(3)  # Allow time for the page to load results
+                            time.sleep(8)  # Allow time for the page to load results
 
                             try:
                                 # Refetch dropdown elements after page load
@@ -197,7 +198,7 @@ def nycu_course_scrape(csv_path):
                         time.sleep(1)
 
                         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "crstime_search"))).click()
-                        time.sleep(3)  # Allow time for the page to load results
+                        time.sleep(8)  # Allow time for the page to load results
 
                         try:
                             # Refetch dropdown elements after page load
@@ -321,7 +322,7 @@ def nycu_course_scrape(csv_path):
                 time.sleep(1)
 
                 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "crstime_search"))).click()
-                time.sleep(3)  # Allow time for the page to load results
+                time.sleep(8)  # Allow time for the page to load results
 
                 try:
                     # Refetch dropdown elements after page load

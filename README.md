@@ -5,14 +5,13 @@
 <h2 align="center">College Courses - Taiwan</h2>
 
 <p align="center">
-  Simply scrape courses information from three different colleges with a single command.
+  Simply scrape courses information from three different colleges with few commands.
 </p>
 <br>
 
 ## Prerequisites
 
 - Python 3.x
-- ChromeDriver compatible with your version of the Google Chrome browser
 
 ## Installation
 
@@ -34,10 +33,6 @@ Follow these steps to set up and run the project:
    ```
    pip install -r requirements.txt
    ```
-
-4. **Download ChromeDriver**
-  Download ChromeDriver from [here](https://chromedriver.chromium.org/downloads).
-  Ensure it is in your PATH or in the same directory as the scripts.
 
 
 ## Usage
@@ -62,10 +57,10 @@ To run the scraping scripts, use the following commands:
 
 ### For NTHU:
 1. **Obtain a 2Captcha API key:** First, create an account at [2Captcha](https://2captcha.com/) to get your API key.
-2. **Scrape data:** Execute the following command to scrape data for NTHU:
+2. Execute the following command to scrape data for NTHU:
 
    ```
    cd NTHU
    mkdir captchas
-   python3 nthu_scrape.py <path_to_chromedriver> <path_to_output_csv> <your_twocaptcha_apikey>
+   python3 nthu_scrape.py <your_twocaptcha_apikey>
    ```
